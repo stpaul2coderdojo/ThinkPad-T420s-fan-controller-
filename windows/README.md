@@ -24,3 +24,9 @@ If you want the thermal agent bridge to run automatically whenever you turn on y
 ## Coexisting with TPFanControl
 If you already use classic `TPFanControl.exe`:
 - Switch TPFanControl to `Manual=1` or `Smart=0` in `TPFanControl.ini` so it does not conflict with the Antigravity Agent's dynamic predictive hysteresis curve.
+
+---
+
+## Author & License
+- **Author**: Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle ([bheemaiah@alumni.iitm.ac.in](mailto:bheemaiah@alumni.iitm.ac.in))
+- **License**: MIT License

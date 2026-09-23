@@ -1,10 +1,12 @@
 # ThinkPad T420s Antigravity Thermal Agent 🌡️🛸
 
+[![Author](https://img.shields.io/badge/Author-Dr.%20Bheemaiah%20Anil%20K-red.svg)](mailto:bheemaiah@alumni.iitm.ac.in)
+[![Organization](https://img.shields.io/badge/Synergy%20Robotics-Seattle-blueviolet.svg)](#author)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![ThinkPad](https://img.shields.io/badge/ThinkPad-T420s-red.svg)](https://www.thinkwiki.org/wiki/Category:T420s)
 [![Kernel](https://img.shields.io/badge/Linux-thinkpad__acpi-blue.svg)](https://www.kernel.org/doc/Documentation/laptops/thinkpad-acpi.txt)
 [![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078d4.svg)](https://microsoft.com)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg)](https://www.docker.com/)
-[![React](https://img.shields.io/badge/Frontend-React%2019%20%2B%20Tailwind-61dafb.svg)](https://react.dev)
 
 An agentic CPU temperature telemetry monitor, ACPI fan governor, and **Antigravity Zero-G predictive thermal curve controller** designed specifically for the **Lenovo ThinkPad T420s** (Intel Core i5-2520M / i7-2620M / i7-2640M Sandy Bridge).
 
@@ -177,6 +179,15 @@ When the bridge is running on `http://localhost:9090`:
 
 ---
 
+## 👨‍🔬 Author
+
+**Dr. Bheemaiah Anil K**  
+Director, Synergy Robotics Seattle  
+Email: [bheemaiah@alumni.iitm.ac.in](mailto:bheemaiah@alumni.iitm.ac.in)
+
+---
+
 ## 📄 License
 
-Apache-2.0 License. Designed for Lenovo ThinkPad enthusiasts and thermal engineering.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.  
+Copyright (c) 2026 Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle.

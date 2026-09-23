@@ -1,6 +1,6 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
+ * @license MIT
+ * Copyright (c) 2026 Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle
  */
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
@@ -543,6 +543,24 @@ export default function App() {
             unit={unit}
           />
         </div>
+
+        {/* Footer with Author and MIT License */}
+        <footer className="pt-6 pb-2 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-400">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-zinc-200">Author:</span>
+            <span className="text-zinc-300">Dr. Bheemaiah Anil K</span>
+            <span className="text-zinc-600">•</span>
+            <span className="text-red-400 font-medium">Director, Synergy Robotics Seattle</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-300 text-[11px]">
+              MIT License
+            </span>
+            <span className="text-zinc-400 text-[11px]">
+              Lenovo ThinkPad T420s Architecture
+            </span>
+          </div>
+        </footer>
       </main>
 
       {/* Hardware Bridge Modal for Real ThinkPad T420s Linux Machines */}
