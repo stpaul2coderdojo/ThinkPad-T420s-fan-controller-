@@ -1,0 +1,6 @@
+{
+  "name": "ThinkPad T420s Antigravity Thermal Agent",
+  "description": "Agentic CPU temperature telemetry, ACPI fan governor, and antigravity predictive thermal curve controller for Lenovo ThinkPad T420s.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
