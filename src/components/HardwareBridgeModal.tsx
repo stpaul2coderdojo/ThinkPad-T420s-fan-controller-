@@ -12,6 +12,7 @@ import {
   ExternalLink,
   Laptop,
   CheckCircle2,
+  Globe,
 } from 'lucide-react';
 
 interface HardwareBridgeModalProps {
@@ -21,7 +22,7 @@ interface HardwareBridgeModalProps {
   onConnectHardware: () => void;
 }
 
-type PlatformTab = 'linux' | 'windows' | 'docker';
+type PlatformTab = 'linux' | 'windows' | 'docker' | 'render';
 
 export const HardwareBridgeModal: React.FC<HardwareBridgeModalProps> = ({
   isOpen,
@@ -199,7 +200,20 @@ pause`;
             }`}
           >
             <Container className="w-4 h-4 text-blue-400" />
-            Docker Container
+            Docker
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('render')}
+            className={`px-4 py-2 font-mono text-xs font-bold rounded-t-xl transition cursor-pointer flex items-center gap-2 border-t border-x ${
+              activeTab === 'render'
+                ? 'bg-zinc-900 text-teal-400 border-zinc-700'
+                : 'bg-transparent text-zinc-400 hover:text-zinc-200 border-transparent'
+            }`}
+          >
+            <Globe className="w-4 h-4 text-teal-400" />
+            Host on Render
           </button>
         </div>
 
@@ -335,6 +349,69 @@ pause`;
                   </pre>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Render Hosting Tab */}
+          {activeTab === 'render' && (
+            <div className="space-y-4">
+              <div className="p-3.5 bg-teal-950/40 border border-teal-800/50 rounded-xl flex items-center justify-between">
+                <div>
+                  <div className="font-bold text-teal-200">Deploy Free on Render.com</div>
+                  <div className="text-[11px] text-zinc-400 mt-0.5">
+                    Pre-configured with render.yaml blueprint and Express SPA production server.
+                  </div>
+                </div>
+                <a
+                  href="https://dashboard.render.com/blueprints"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-1.5 transition cursor-pointer shadow-md"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Open Render
+                </a>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-zinc-200">Option 1: Deploy with render.yaml Blueprint (Recommended)</span>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard('services:\n  - type: web\n    name: thinkpad-t420s-thermal-agent\n    runtime: node\n    plan: free\n    buildCommand: npm ci && npm run build\n    startCommand: npm start\n    healthCheckPath: /healthz', 'r1')}
+                    className="flex items-center gap-1 text-[10px] px-2 py-1 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition cursor-pointer"
+                  >
+                    {copiedIndex === 'r1' ? (
+                      <>
+                        <Check className="w-3 h-3 text-emerald-400" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3 h-3 text-zinc-400" />
+                        Copy Blueprint
+                      </>
+                    )}
+                  </button>
+                </div>
+                <p className="text-[11px] text-zinc-400">
+                  Connect your GitHub/GitLab repo on Render, click &apos;New Blueprint&apos;, and Render will automatically provision the Node web service using the root render.yaml file.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <span className="font-bold text-zinc-200">Option 2: Manual Web Service Setup</span>
+                <div className="grid grid-cols-2 gap-2 text-[11px] p-3 bg-zinc-950/70 border border-zinc-800 rounded-lg">
+                  <div><span className="text-zinc-500">Build Command:</span> <code className="text-teal-400">npm ci && npm run build</code></div>
+                  <div><span className="text-zinc-500">Start Command:</span> <code className="text-teal-400">npm start</code></div>
+                  <div><span className="text-zinc-500">Runtime:</span> <code className="text-zinc-300">Node</code></div>
+                  <div><span className="text-zinc-500">Health Check:</span> <code className="text-zinc-300">/healthz</code></div>
+                </div>
+              </div>
+
+              <div className="p-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-[11px] text-zinc-400 leading-relaxed">
+                💡 <strong className="text-zinc-200">Hardware Telemetry in Cloud:</strong> When hosted on Render, the dashboard still connects seamlessly to your physical ThinkPad via local browser loopback (<code className="text-red-400">http://localhost:9090</code>). Simply run the bridge script on your laptop.
+              </div>
             </div>
           )}
         </div>

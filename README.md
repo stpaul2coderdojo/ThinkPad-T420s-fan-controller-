@@ -7,6 +7,8 @@
 [![Kernel](https://img.shields.io/badge/Linux-thinkpad__acpi-blue.svg)](https://www.kernel.org/doc/Documentation/laptops/thinkpad-acpi.txt)
 [![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078d4.svg)](https://microsoft.com)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg)](https://www.docker.com/)
+[![Render](https://img.shields.io/badge/Render-Hosted-46E3B7.svg)](RENDER.md)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 An agentic CPU temperature telemetry monitor, ACPI fan governor, and **Antigravity Zero-G predictive thermal curve controller** designed specifically for the **Lenovo ThinkPad T420s** (Intel Core i5-2520M / i7-2620M / i7-2640M Sandy Bridge).
 
@@ -156,6 +158,19 @@ docker run -d \
   -v /sys/devices/platform/thinkpad_hwmon:/sys/devices/platform/thinkpad_hwmon:ro \
   thinkpad-t420s-thermal-agent:latest
 ```
+
+---
+
+## 🌐 Hosting on Render (Cloud Deployment)
+
+Deploy instantly with Render's infrastructure blueprint:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+1. Connect your Git repository to **[Render.com](https://render.com)**.
+2. Select **Blueprint** and Render will automatically read `render.yaml`.
+3. Click **Apply** to automatically install dependencies, build the Vite frontend, and launch the Node web service on the Render Free Tier.
+4. For complete instructions, see **[RENDER.md](RENDER.md)**.
 
 ---
 
