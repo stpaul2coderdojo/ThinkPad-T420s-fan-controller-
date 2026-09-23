@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  thinkpad-thermal-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: thinkpad-t420s-agent
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "9090:9090"
+    environment:
+      - PORT=3000
+      - BRIDGE_PORT=9090
+      - NODE_ENV=production
+    # For real hardware ACPI control on Linux ThinkPad host:
+    # privileged: true
+    # volumes:
+    #   - /proc/acpi/ibm:/proc/acpi/ibm:rw
+    #   - /sys/devices/platform/thinkpad_hwmon:/sys/devices/platform/thinkpad_hwmon:ro
