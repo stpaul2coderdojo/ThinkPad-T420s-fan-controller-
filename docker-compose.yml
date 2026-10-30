@@ -1,5 +1,9 @@
 version: '3.8'
 
+# Docker Compose configuration for ThinkPad T420s Antigravity Thermal Agent
+# Author: Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle
+# License: MIT
+
 services:
   thinkpad-thermal-agent:
     build:
@@ -8,13 +12,19 @@ services:
     container_name: thinkpad-t420s-agent
     restart: unless-stopped
     ports:
-      - "3000:3000"
-      - "9090:9090"
+      - "3000:3000"   # Web Dashboard UI & Express API
+      - "9090:9090"   # Hardware Bridge REST Daemon
     environment:
       - PORT=3000
       - BRIDGE_PORT=9090
       - NODE_ENV=production
-    # For real hardware ACPI control on Linux ThinkPad host:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    # Optional: For real physical hardware ACPI & fan control on a Linux ThinkPad host:
     # privileged: true
     # volumes:
     #   - /proc/acpi/ibm:/proc/acpi/ibm:rw

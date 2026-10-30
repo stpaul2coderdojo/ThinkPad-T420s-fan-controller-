@@ -1,26 +1,43 @@
+# =========================================================
 # Render Blueprint for ThinkPad T420s Antigravity Thermal Agent
 # Author: Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle
 # License: MIT
 # Documentation: https://render.com/docs/blueprint-spec
+# =========================================================
 
 services:
-  # 1. Node.js Web Service Option
+  # Option A: Native Node.js Web Service (Default)
   - type: web
     name: thinkpad-t420s-thermal-agent
     runtime: node
     plan: free
-    region: oregon # or frankfurt, ohio, singapore
+    region: oregon # alternatives: frankfurt, ohio, singapore
     buildCommand: npm ci && npm run build
     startCommand: npm start
     healthCheckPath: /healthz
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
 
-  # 2. Static Site Option (Alternative for pure frontend CDN)
-  # Uncomment if you prefer a 100% serverless static CDN deployment:
+  # Option B: Docker Containerized Web Service
+  # Uncomment below to deploy the Dockerfile directly on Render:
+  # - type: web
+  #   name: thinkpad-t420s-docker-agent
+  #   runtime: docker
+  #   plan: free
+  #   region: oregon
+  #   dockerfilePath: ./Dockerfile
+  #   healthCheckPath: /healthz
+  #   autoDeploy: true
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
+
+  # Option C: Static Site (100% Free CDN, client-side only)
+  # Uncomment below for a serverless static deployment:
   # - type: web
   #   name: thinkpad-t420s-static-agent
   #   runtime: static

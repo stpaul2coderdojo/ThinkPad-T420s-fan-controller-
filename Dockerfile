@@ -1,14 +1,19 @@
+# =========================================================
 # Multi-stage Dockerfile for ThinkPad T420s Antigravity Thermal Agent
-# Build Stage
+# Author: Dr. Bheemaiah Anil K, Director, Synergy Robotics Seattle
+# License: MIT
+# =========================================================
+
+# Stage 1: Build Frontend SPA
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy dependency specifications
+# Install dependencies
 COPY package*.json tsconfig*.json vite.config.ts index.html ./
 RUN npm ci
 
-# Copy application source code
+# Copy source and public assets
 COPY src/ ./src/
 COPY public/ ./public/
 
@@ -16,7 +21,7 @@ COPY public/ ./public/
 RUN npm run build
 
 # =========================================================
-# Production Runtime Stage
+# Stage 2: Production Runtime (Compatible with Docker & Render)
 # =========================================================
 FROM node:20-alpine AS runner
 
@@ -24,23 +29,27 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Install Python and curl for ThinkPad ACPI procfs bridge (optional hardware mode)
-RUN apk add --no-cache python3 py3-pip bash curl
+# Install curl for container health check & python3 for ThinkPad ACPI bridge
+RUN apk add --no-cache curl python3 bash
 
-# Install lightweight static server
-RUN npm install -g serve
+# Install production dependencies only
+COPY package*.json ./
+RUN npm ci --omit=dev
 
-# Copy built frontend assets from builder
-COPY --from=builder /app/dist /app/dist
+# Copy compiled frontend assets from builder
+COPY --from=builder /app/dist ./dist
 
-# Copy companion daemon scripts
-COPY scripts/ /app/scripts/
+# Copy production Express server
+COPY server.js ./
 
-# Healthcheck
+# Copy companion hardware scripts
+COPY scripts/ ./scripts/
+
+# Container Healthcheck (matches Render & Docker Compose)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3000/ || exit 1
+  CMD curl -f http://localhost:${PORT:-3000}/healthz || exit 1
 
 EXPOSE 3000 9090
 
-# Default entrypoint starts the dashboard web interface
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# Launch production server (automatically binds to $PORT or default 3000)
+CMD ["node", "server.js"]
