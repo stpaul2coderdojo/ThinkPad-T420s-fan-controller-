@@ -12,7 +12,7 @@ services:
     runtime: node
     plan: free
     region: oregon # alternatives: frankfurt, ohio, singapore
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm start
     healthCheckPath: /healthz
     autoDeploy: true
@@ -42,7 +42,7 @@ services:
   #   name: thinkpad-t420s-static-agent
   #   runtime: static
   #   plan: free
-  #   buildCommand: npm ci && npm run build
+  #   buildCommand: npm install && npm run build
   #   staticPublishPath: ./dist
   #   routes:
   #     - type: rewrite

@@ -378,7 +378,7 @@ pause`;
                   <span className="font-bold text-zinc-200">Option 1: Deploy with render.yaml Blueprint (Recommended)</span>
                   <button
                     type="button"
-                    onClick={() => copyToClipboard('services:\n  - type: web\n    name: thinkpad-t420s-thermal-agent\n    runtime: node\n    plan: free\n    buildCommand: npm ci && npm run build\n    startCommand: npm start\n    healthCheckPath: /healthz', 'r1')}
+                    onClick={() => copyToClipboard('services:\n  - type: web\n    name: thinkpad-t420s-thermal-agent\n    runtime: node\n    plan: free\n    buildCommand: npm install && npm run build\n    startCommand: npm start\n    healthCheckPath: /healthz', 'r1')}
                     className="flex items-center gap-1 text-[10px] px-2 py-1 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition cursor-pointer"
                   >
                     {copiedIndex === 'r1' ? (
@@ -402,7 +402,7 @@ pause`;
               <div className="space-y-2">
                 <span className="font-bold text-zinc-200">Option 2: Manual Web Service Setup</span>
                 <div className="grid grid-cols-2 gap-2 text-[11px] p-3 bg-zinc-950/70 border border-zinc-800 rounded-lg">
-                  <div><span className="text-zinc-500">Build Command:</span> <code className="text-teal-400">npm ci && npm run build</code></div>
+                  <div><span className="text-zinc-500">Build Command:</span> <code className="text-teal-400">npm install && npm run build</code></div>
                   <div><span className="text-zinc-500">Start Command:</span> <code className="text-teal-400">npm start</code></div>
                   <div><span className="text-zinc-500">Runtime:</span> <code className="text-zinc-300">Node</code></div>
                   <div><span className="text-zinc-500">Health Check:</span> <code className="text-zinc-300">/healthz</code></div>

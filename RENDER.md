@@ -15,7 +15,7 @@ This guide walks you through deploying the **ThinkPad T420s Antigravity Thermal 
 5. Render will automatically detect the `render.yaml` file in the root of the project.
 6. Click **Apply**.
 7. Render will automatically:
-   - Install dependencies (`npm ci`)
+   - Install dependencies (`npm install`)
    - Build the production bundle (`npm run build`)
    - Start the Express server (`npm start`)
    - Monitor health checks via `/healthz`
@@ -35,7 +35,7 @@ If you prefer configuring through the Render UI manually:
    - **Region**: Choose closest to you (e.g., Oregon, Ohio, Frankfurt, Singapore).
    - **Branch**: `main`
    - **Runtime**: `Node`
-   - **Build Command**: `npm ci && npm run build`
+   - **Build Command**: `npm install && npm run build`
    - **Start Command**: `npm start`
    - **Instance Type**: `Free`
 4. Under **Advanced**:
@@ -53,7 +53,7 @@ If you only want the client-side SPA served on Render's global CDN:
 2. Connect your repository.
 3. Configure:
    - **Name**: `thinkpad-t420s-agent`
-   - **Build Command**: `npm ci && npm run build`
+   - **Build Command**: `npm install && npm run build`
    - **Publish Directory**: `./dist`
 4. Under **Redirects/Rewrites**:
    - **Source**: `/*`

@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json tsconfig*.json vite.config.ts index.html ./
-RUN npm ci
+RUN npm install
 
 # Copy source and public assets
 COPY src/ ./src/
@@ -34,7 +34,7 @@ RUN apk add --no-cache curl python3 bash
 
 # Install production dependencies only
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 # Copy compiled frontend assets from builder
 COPY --from=builder /app/dist ./dist
